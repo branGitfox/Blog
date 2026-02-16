@@ -3,3 +3,4 @@ sqlalchemy
 pymysql
 python-multipart
 pwdlib
+uvicorn
