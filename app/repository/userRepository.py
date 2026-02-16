@@ -1,17 +1,25 @@
+import datetime
+import requests_async as rq
 from sqlalchemy.orm import Session
-from .. schemas import User
-from fastapi import HTTPException, Depends
-from ..database import  get_db
-from .. import models
+from fastapi import HTTPException
+from .. import hashing, database, schemas, models
+
+
+def random_user_avatar(username: str):
+    return f'https://ui-avatars.com/api/?name={username.replace(' ', '+')}'
 
 class UserRepository:
-
-    def create(self, request: User, db: Session = Depends(get_db)):
+    @staticmethod
+    def create_user(request: schemas.User, db: Session):
         check_user = db.query(models.User).filter(models.User.email == request.email).count()
         if check_user > 0:
             return HTTPException(status_code=201, detail="Email already registered")
-        new_user = User(email=request.email, username=request.username, password=request.password)
+        new_user = models.User(email=request.email, username=request.username, password=hashing.hash_password(request.password), active=request.active, is_superuser=request.is_superuser, created_at=datetime.datetime.now(), avatar_url= random_user_avatar(request.username))
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
         return new_user
+
+
+
+

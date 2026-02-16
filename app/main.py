@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from routers import user
-from models import  Base
-from database import engine
+from app.routers import user
+from app.models import  Base
+from app.database import engine
 app = FastAPI()
 
 # creating all tables from models

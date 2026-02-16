@@ -10,9 +10,11 @@ class User(Base):
     username = Column(String(50))
     email = Column(String(100))
     password = Column(String(250))
-    active = Column(Boolean)
-    is_superuser = Column(Boolean)
+    active = Column(Boolean, default=True)
+    is_superuser = Column(Boolean, default=False)
+    avatar_url = Column(String(250))
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
+
 
 

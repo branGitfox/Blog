@@ -2,5 +2,6 @@ fastapi
 sqlalchemy
 pymysql
 python-multipart
-pwdlib
 uvicorn
+pydantic[email]
+pwdlib[argon2]
