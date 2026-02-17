@@ -1,5 +1,4 @@
 import datetime
-
 from pydantic import BaseModel
 from pydantic import EmailStr
 
@@ -13,4 +12,13 @@ class User(BaseModel):
     avatar_url: str
     created_at: datetime.datetime
     updated_at: datetime.datetime
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    email: str | None = None
 

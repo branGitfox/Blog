@@ -1,12 +1,11 @@
 import datetime
-import requests_async as rq
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from .. import hashing, database, schemas, models
-
+from .. import hashing, schemas, models
+from .. token import create_access_token
 
 def random_user_avatar(username: str):
-    return f'https://ui-avatars.com/api/?name={username.replace(' ', '+')}'
+    return f"https://ui-avatars.com/api/?name={username.replace(' ', '+')}"
 
 class UserRepository:
     @staticmethod
