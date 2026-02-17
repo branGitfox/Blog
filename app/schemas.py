@@ -13,6 +13,10 @@ class User(BaseModel):
     created_at: datetime.datetime
     updated_at: datetime.datetime
 
+class CreateUser(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
 
 class Token(BaseModel):
     access_token: str
