@@ -30,9 +30,17 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: str | None = None
 
+class Creator(BaseModel):
+    username: str
+    avatar_url: str
 
 class Blog(BaseModel):
-    title: str = Form(...)
-    content: str = Form(...)
-    tags: str = Form(...)
-    file: UploadFile = File(...)
+    id: int
+    title: str
+    content: str
+    tags: str
+    cover_image:str
+    created_at:datetime.datetime
+    creator: Creator
+
+

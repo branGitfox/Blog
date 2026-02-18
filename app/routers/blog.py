@@ -1,14 +1,15 @@
 import os
 from datetime import datetime
-
-from fastapi import APIRouter, Form, UploadFile, File, HTTPException
-import uuid
-import shutil
-
-from sqlalchemy.orm import Session
+from typing import List
 
 from .. import schemas, models, OAuth2, database
 from fastapi.params import Depends
+from fastapi import APIRouter, Form, UploadFile, File, HTTPException
+import uuid
+import shutil
+from sqlalchemy.orm import Session
+from .. repository.blogRepository import BlogRepository
+from ..schemas import Blog
 
 router = APIRouter(prefix='/blogs', tags=['blogs'])
 
@@ -33,7 +34,7 @@ async def create_blog(title: str = Form(...), tags:str = Form(...), content:str 
     db.refresh(new_blog)
     return new_blog
 
-# @router.get('/blogs')
-# def get_alls(db: Session = Depends(database.get_db)):
-#     return blogRepository
+@router.get('/')
+def get_alls(db: Session = Depends(database.get_db)) -> List[Blog]:
+    return BlogRepository.alls(db)
 
