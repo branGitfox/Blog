@@ -1,4 +1,6 @@
 import datetime
+
+from fastapi import Form, UploadFile, File
 from pydantic import BaseModel
 from pydantic import EmailStr
 
@@ -26,3 +28,9 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: str | None = None
 
+
+class Blog(BaseModel):
+    title: str = Form(...)
+    content: str = Form(...)
+    tags: str = Form(...)
+    file: UploadFile = File(...)
