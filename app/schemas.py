@@ -1,4 +1,5 @@
 import datetime
+from typing import Optional
 
 from fastapi import Form, UploadFile, File
 from pydantic import BaseModel
@@ -6,6 +7,7 @@ from pydantic import EmailStr
 
 
 class User(BaseModel):
+    id: Optional[int] = None
     username: str
     email: EmailStr
     password: str
