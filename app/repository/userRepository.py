@@ -21,5 +21,9 @@ class UserRepository:
         return new_user
 
 
+    @staticmethod
+    def alls(db:Session):
+        return db.query(models.User).all()
+
 
 

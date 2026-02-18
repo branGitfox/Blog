@@ -33,3 +33,7 @@ async def create_blog(title: str = Form(...), tags:str = Form(...), content:str 
     db.refresh(new_blog)
     return new_blog
 
+# @router.get('/blogs')
+# def get_alls(db: Session = Depends(database.get_db)):
+#     return blogRepository
+
