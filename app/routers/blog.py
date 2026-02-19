@@ -38,3 +38,8 @@ async def create_blog(title: str = Form(...), tags:str = Form(...), content:str 
 def get_alls(db: Session = Depends(database.get_db)) -> List[Blog]:
     return BlogRepository.alls(db)
 
+@router.get('/{blog_id}')
+def get_blog(blog_id:int, db:Session=Depends(database.get_db)) -> schemas.Blog:
+    return BlogRepository.get(blog_id, db)
+
+

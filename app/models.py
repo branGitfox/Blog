@@ -30,4 +30,16 @@ class Blog(Base):
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
     cover_image = Column(String(250))
+    comments = Relationship('Comment', back_populates='post')
 
+
+class Comment(Base):
+    __tablename__ = 'comments'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    blog_id = Column(Integer, ForeignKey('blogs.id'))
+    creator = Relationship('User', back_populates='comments')
+    blog = Relationship('Blog', back_populates='post')
+    content = Column(String(250))
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)

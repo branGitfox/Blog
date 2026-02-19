@@ -15,3 +15,4 @@ def create(request: CreateUser, db: Session = Depends(database.get_db)):
 @router.get('/')
 def get_users(db: Session = Depends(database.get_db), get_current_user: User = Depends(OAuth2.get_current_user)):
     return UserRepository.alls(db)
+
