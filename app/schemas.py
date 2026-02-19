@@ -1,5 +1,5 @@
 import datetime
-from typing import Optional
+from typing import Optional, List
 
 from fastapi import Form, UploadFile, File
 from pydantic import BaseModel
@@ -34,6 +34,12 @@ class Creator(BaseModel):
     username: str
     avatar_url: str
 
+class Comment(BaseModel):
+    content: str
+    created_at: datetime.datetime
+    creator: Creator
+
+
 class Blog(BaseModel):
     id: int
     title: str
@@ -42,5 +48,6 @@ class Blog(BaseModel):
     cover_image:str
     created_at:datetime.datetime
     creator: Creator
+    comments: List[Comment]
 
 
