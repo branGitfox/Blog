@@ -16,7 +16,7 @@ class User(Base):
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
     blogs = Relationship('Blog', back_populates='creator')
-
+    comments = Relationship('Comment', back_populates='creator')
 
 
 class Blog(Base):
@@ -30,7 +30,7 @@ class Blog(Base):
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
     cover_image = Column(String(250))
-    comments = Relationship('Comment', back_populates='post')
+    comments = Relationship('Comment', back_populates='blog')
 
 
 class Comment(Base):
@@ -39,7 +39,7 @@ class Comment(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     blog_id = Column(Integer, ForeignKey('blogs.id'))
     creator = Relationship('User', back_populates='comments')
-    blog = Relationship('Blog', back_populates='post')
+    blog = Relationship('Blog', back_populates='comments')
     content = Column(String(250))
     created_at = Column(DateTime)
     updated_at = Column(DateTime)

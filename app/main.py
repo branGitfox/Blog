@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
 
-from app.routers import user, authentification, blog
+from app.routers import user, authentification, blog, comment
 from app.models import  Base
 from app.database import engine
 from fastapi.middleware.cors import CORSMiddleware
@@ -30,3 +30,4 @@ Base.metadata.create_all(engine)
 app.include_router(user.router)
 app.include_router(authentification.router)
 app.include_router(blog.router)
+app.include_router(comment.router)

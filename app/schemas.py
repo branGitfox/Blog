@@ -1,7 +1,5 @@
 import datetime
 from typing import Optional, List
-
-from fastapi import Form, UploadFile, File
 from pydantic import BaseModel
 from pydantic import EmailStr
 
@@ -30,14 +28,21 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: str | None = None
 
+
 class Creator(BaseModel):
     username: str
     avatar_url: str
+
 
 class Comment(BaseModel):
     content: str
     created_at: datetime.datetime
     creator: Creator
+
+
+class PostComment(BaseModel):
+    content:str
+    blog_id:int
 
 
 class Blog(BaseModel):
